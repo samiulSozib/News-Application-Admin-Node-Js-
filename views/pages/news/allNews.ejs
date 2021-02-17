@@ -1,0 +1,34 @@
+<%- include('../../partials/head.ejs') %> 
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+        <div class="card card-body m-5">
+            <h3>All News</h3>
+            <div class="row">
+                <% if(allNews.length==0){%>
+                    <div class="text-center text-muted"></div>
+                    <p>There is no news available</p>
+                    <a href="/news/create-news" class="btn btn-primary">Create News</a>
+                <% }else{ %>
+                    <% for(let news of allNews.reverse()){ %>
+                        <div class="card col-sm-3 col-md-6 col-lg-6 mb-2">
+                            <% if(news.thumbnail){ %>
+                                <img height="200px" src="<%= news.thumbnail %> " alt="News Image" class="rounded float-left">
+                            <% } %>
+                            <div class="card-body">
+                                <h5><%= news.title %> </h5>
+                                <a href="/news/edit-news/<%= news.id %> " class="btn btn-primary">Edit News</a>
+                                <a href="/news/deleteNews/<%= news.id %> " class="btn btn-danger">Delete News</a>
+                            </div>
+                        </div>
+                    <% } %> 
+                <% } %>   
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/footer.ejs') %>
+    </body>
+</html>
